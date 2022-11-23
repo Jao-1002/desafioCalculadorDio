@@ -16,7 +16,7 @@ export const InputContainer = styled.div`
         width: 90%;
         height: 75px;
         background-color:#aaaaff;
-        border: 1px solid black;
+        border: none;
         display: flex;
         justify-content: center;
 
