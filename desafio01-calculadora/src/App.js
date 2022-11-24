@@ -17,11 +17,23 @@ const App = () => {
   const [ firstNumber, setFirstNumber ] = useState('0')
 
   const handleAddNumber = (number) => {
-    setCurrentNumber(prev => `${number}${ prev === '0' ? '' : prev }`)
+    setCurrentNumber(prev => `${ prev === '0' ? '' : prev }${number}`)
   }
 
   const handleOnClear = () => {
     setCurrentNumber('0')
+    
+  }
+
+  const handleSumNumber = () => {
+    if(firstNumber === '0'){
+      setFirstNumber( currentNumbr );
+      setCurrentNumber('0')
+    }else {
+      console.log(Number( firstNumber ), Number( currentNumbr ));
+      const sum = Number( firstNumber ) + Number( currentNumbr ) ;
+      setCurrentNumber ( String( sum  ) )  
+    }
   }
 
   return (
@@ -44,7 +56,7 @@ const App = () => {
           <Button label="4" onClick={ () => handleAddNumber('4')}/>
           <Button label="5" onClick={ () => handleAddNumber('5')}/>
           <Button label="6" onClick={ () => handleAddNumber('6')}/>
-          <Button label="+" onClick={ () => handleAddNumber('+')}/>
+          <Button label="+" onClick={ handleSumNumber }/>
         </Row>
         <Row>
           <Button label="1" onClick={ () => handleAddNumber('1')}/>
