@@ -12,82 +12,73 @@ import Button from './components/button';
 import { useState } from 'react'
 
 const App = () => {
-  const [ currentNumbr, setCurrentNumber ] = useState('0');
+  let [ currentNumber, setCurrentNumber ] = useState('0');
 
-  const [ firstNumber, setFirstNumber ] = useState('0')
+  // const [ firstNumber, setFirstNumber ] = useState('0')
 
-  const [ operation, setOperation ] = useState('')
+  // const [ operation, setOperation ] = useState('')
 
   const handleAddNumber = (number) => {
     setCurrentNumber(prev => `${ prev === '0' ? '' : prev }${number}`)
   }
+ 
+  function trocar(resul) {
+    setCurrentNumber(resul)
+  }
+
 
   const handleOnClear = () => {
     setCurrentNumber('0')
+  }
+
+  const handleRemoveNumber = () => {
+    let result = currentNumber
+    result = result.substring(0, result.length - 1);
+    if (result === "" || result === undefined) {
+      setCurrentNumber(prev => `${ prev === '0' ? '' : "0" }`)
+    }else{
+      trocar(result)
+    }
     
   }
-
-  const handleSumNumber = () => {
-    if(firstNumber === '0'){
-      setFirstNumber( currentNumbr );
-      setCurrentNumber('0')
-      setOperation('+')
-    }else {
-      const sum = Number( firstNumber ) + Number( currentNumbr ) ;
-      setCurrentNumber ( String( sum  ) ) 
-      setOperation('') 
-    }
-  }
-
-  const handleMinusNumber = () => {
-    if(firstNumber === '0'){
-      setFirstNumber( currentNumbr );
-      setCurrentNumber('0')
-      setOperation('-')
-    }else {
-      const sum = Number( firstNumber ) - Number( currentNumbr ) ;
-      setCurrentNumber ( String( sum  ) ) 
-      setOperation('') 
-    }
-  }
-
+  
   const handleEquals = () => {
-    if( firstNumber !== '0' && operation !== '' && currentNumbr !== 0 ){
-      switch( operation ) { 
-        
-        case '+':
-          handleSumNumber()
-          break
-          default: break
+    let resul 
+    if (currentNumber.substring(currentNumber.length -1) === "+" || currentNumber.substring(currentNumber.length -1) === "-" || currentNumber.substring(currentNumber.length -1) === "*" || currentNumber.substring(currentNumber.length -1) === "/") {
 
-        case '-':
-          handleMinusNumber ()
-          break
-      }
+      resul = currentNumber
+      resul = resul.substring(0, resul.length - 1);
+      
+      trocar(resul)
+
     }
+
+    console.log(currentNumber);
+    let resultado = eval(currentNumber) 
+    setCurrentNumber(resultado)
   }
 
   return (
     <Container>
       <Content>
-        <Input value={ currentNumbr } />
+        <Input value={ currentNumber } />
         <Row> 
           <Button label="*" onClick={ () => handleAddNumber('*')}/>
           <Button label="/" onClick={ () => handleAddNumber('/')}/>
           <Button label="C" onClick={ () => handleOnClear() }/>
-          <Button label="?" onClick={ () => handleAddNumber('?')}/>
+          <Button label="X" onClick={ handleRemoveNumber}/>
         </Row>
         <Row>
           <Button label="7" onClick={ () => handleAddNumber('7')}/>
           <Button label="8" onClick={ () => handleAddNumber('8')}/>
           <Button label="9" onClick={ () => handleAddNumber('9')}/>
-          <Button label="-" onClick={ handleMinusNumber }/>
+          <Button label="-" onClick={ () => handleAddNumber('-') }/>
         </Row>
         <Row>
           <Button label="4" onClick={ () => handleAddNumber('4')}/>
           <Button label="5" onClick={ () => handleAddNumber('5')}/>
           <Button label="6" onClick={ () => handleAddNumber('6')}/>
-          <Button label="+" onClick={ handleSumNumber }/>
+          <Button label="+" onClick={ () => handleAddNumber('+') }/>
         </Row>
         <Row>
           <Button label="1" onClick={ () => handleAddNumber('1')}/>

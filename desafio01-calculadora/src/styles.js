@@ -6,15 +6,17 @@ import styled from "styled-components";
 export const Container = styled.div`
     width: 100%;
     height: 100vh;
-    background-color: #cacaca;
+    background: radial-gradient(#7FFFD4, #66CDAA);
     
     display: flex;
     align-items: center;
     justify-content: center;
+
+    
 `
 
 export const Content = styled.div`
-   background-color: #fff;
+   background-color: #000;
    width: 300px;
    
    

@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 export const InputContainer = styled.div`
     width: 100%;
-    height: 75px;
-    background-color: #aaaaff;
+    height: 90px;
+    background-color: #48D1CC;
 
     display: felx;
     align-items: center;
@@ -12,10 +12,13 @@ export const InputContainer = styled.div`
     font-size: 24px;
     font-family: 'Roboto';
 
+    border-top: solid #000 4px;
+    border-bottom: solid #000 4px;
+    
     input {
         width: 90%;
         height: 75px;
-        background-color:#aaaaff;
+        background-color:#48D1CC;
         border: none;
         display: flex;
         justify-content: center;
